@@ -1,0 +1,78 @@
+﻿
+@model WassenBurgMedical.Models.ProcessModel
+
+<div>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        
+    </div>
+
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Customer Id
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerId)
+        </dd>
+        <dt>
+            Customer Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerName)
+        </dd>
+        <dt>
+            Machine Nr.
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MachineNr)
+        </dd>
+        <dt>
+            Machine Id
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MachineId)
+        </dd>
+        <dt>
+            Machine Type Serial
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MachineTypeSerial)
+        </dd>
+        <dt>
+            Process
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Process)
+        </dd>
+        <dt>
+            Process Time
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProcessTime)
+        </dd>
+        <dt>
+            Sensor Data
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SensorData)
+        </dd>
+        <dt>
+            Online From
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OnlineFrom)
+        </dd>
+    </dl>
+</div>  

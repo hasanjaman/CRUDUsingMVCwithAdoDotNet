@@ -1,0 +1,144 @@
+﻿
+
+
+@model IEnumerable<WassenBurgMedical.Models.ProcessModel>
+@using (Html.BeginForm("GetAllProcessDetails", "Process"))
+{
+    @section scripts
+{
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+
+    var TeamDetailPostBackURL = '/Process/Details';
+    $(function () {
+        $(".anchorDetail").click(function () {
+            debugger;
+            var $buttonClicked = $(this);
+            var id = $buttonClicked.attr('data-id');
+            var options = { "backdrop": "static", keyboard: true };
+            $.ajax({
+                type: "GET",
+                url: TeamDetailPostBackURL,
+                contentType: "application/json; charset=utf-8",
+                data: { "Id": id },
+                datatype: "json",
+                success: function (data) {
+                    debugger;
+                    $('#myModalContent').html(data);
+                    $('#myModal').modal(options);
+                    $('#myModal').modal('show');
+
+                },
+                error: function (err) {
+                    alert("Dynamic content load failed.");
+                }
+            });
+        });
+        //$("#closebtn").on('click',function(){
+        //    $('#myModal').modal('hide');
+
+        $("#closbtn").click(function () {
+            $('#myModal').modal('hide');
+        });
+    });
+
+    </script>
+
+}
+    <br />
+    <br />
+    @Html.AntiForgeryToken()
+
+    @Html.TextBox("search")
+
+    <button type="submit">Search</button>
+    <br />
+}
+<table class="table">
+    <tr>
+        <th>
+            Customer ID
+        </th>
+        <th>
+            Customer Name
+        </th>
+        <th>
+            Machine Nr.        
+    @*@Html.DisplayNameFor(model => model.MachineNr)*@
+        </th>
+        <th>
+            Machine Id        
+    @*@Html.DisplayNameFor(model => model.MachineId)*@
+        </th>
+        <th>
+            Machine Type Serial
+            @*@Html.DisplayNameFor(model => model.MachineTypeSerial)*@
+        </th>
+        <th>
+            Process
+            @*@Html.DisplayNameFor(model => model.Process)*@
+        </th>
+        <th>
+            Process Time
+            @*@Html.DisplayNameFor(model => model.ProcessTime)*@
+        </th>
+        <th>
+            Sensor Data
+            @*@Html.DisplayNameFor(model => model.SensorData)*@
+        </th>
+        <th>
+            Online From
+            @*@Html.DisplayNameFor(model => model.OnlineFrom)*@
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MachineNr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MachineId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MachineTypeSerial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Process)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProcessTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SensorData)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OnlineFrom)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })*@
+                <a href="javascript:void(0);" class="anchorDetail" data-id="@item.CustomerId">Details</a>
+            </td>
+        </tr>
+
+    }
+
+</table>
+<div id='myModal' class='modal' style="width: 80%; height: 50%; padding-right: 28%;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+
+</div> 
